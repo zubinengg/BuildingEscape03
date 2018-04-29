@@ -1,6 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
+
 #include "PositionReporter.h"
+#include "GameFramework/Actor.h"
+#include "Classes/Components/BoxComponent.h"
 
 
 // Sets default values for this component's properties
@@ -11,6 +14,7 @@ UPositionReporter::UPositionReporter()
 	PrimaryComponentTick.bCanEverTick = true;
 
 	// ...
+	
 }
 
 
@@ -20,7 +24,15 @@ UPositionReporter::UPositionReporter()
 void UPositionReporter::BeginPlay()
 {
 	Super::BeginPlay();
+	//AActor  *uActorComponenent;
 
+	
+	//*UActorComponent::GetOwner
+	FString ObjectName = GetOwner()->GetName();
+	FString ObjectPosition = GetOwner()->GetTransform().GetLocation().ToString();
+
+	// Macro
+	UE_LOG(LogTemp, Warning, TEXT("Position Report Reporting for duty on %s is at %s!!!!!!!"), *ObjectName, *ObjectPosition);
 	// ...
 
 	
