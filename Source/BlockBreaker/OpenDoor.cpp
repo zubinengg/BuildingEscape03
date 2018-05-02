@@ -19,12 +19,11 @@ void UOpenDoor::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	
-
+	ActorThatOpens =	GetWorld()->GetFirstPlayerController()->GetPawn();
 	FString ObjectName = GetOwner()->GetName();
 	FString ObjectPosition = GetOwner()->GetTransform().GetLocation().ToString();
 
-	UE_LOG(LogTemp, Warning, TEXT("Position Report Reporting for duty on %s is at %s!!!!!!!"), *ObjectName, *ObjectPosition);
+	UE_LOG(LogTemp, Warning, TEXT("OPen Door  %s is at %s!!!!!!!"), *ObjectName, *ObjectPosition);
 
 	
 }
@@ -40,6 +39,23 @@ void UOpenDoor::OpenDoor_1()
 
 	//Set Door Rotation	
 	Owner->SetActorRotation(NewRotation);
+
+	UE_LOG(LogTemp, Warning, TEXT("OPen Door  !!!!!!!"));
+}
+
+void UOpenDoor::CloseDoor_1()
+{
+	// ...
+	// Finding the Actor
+	AActor* Owner = GetOwner();
+
+	// Creating a rotator
+	FRotator NewRotation = FRotator(0.0f, 0.0f, 0.0f);
+
+	//Set Door Rotation	
+	Owner->SetActorRotation(NewRotation);
+
+	UE_LOG(LogTemp, Warning, TEXT("Close  Door  !!!!!!!"));
 }
 
 
@@ -55,6 +71,10 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 	if (PressurePlate->IsOverlappingActor(ActorThatOpens))
 	{
 		OpenDoor_1();
+	}
+	else
+	{
+		CloseDoor_1();
 	}
 	
 }

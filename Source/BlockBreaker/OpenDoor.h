@@ -2,7 +2,7 @@
 
 #pragma once
 
-//#include "Engine.h"
+#include "Engine.h"
 #include "Engine/TriggerVolume.h"
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
@@ -22,6 +22,7 @@ protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 	virtual void OpenDoor_1();
+	virtual void CloseDoor_1();
 
 public:	
 	// Called every frame
@@ -37,6 +38,6 @@ private:
 	ATriggerVolume* PressurePlate;
 
 	// Actors that opens the door
-	UPROPERTY(EditAnywhere)
+	//UPROPERTY(EditAnywhere)
 	AActor* ActorThatOpens;
 };
